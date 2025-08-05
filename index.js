@@ -44,9 +44,10 @@ function fazerCalculo() {
     // isso não é uma aspas, é uma crase!!
     resultadoVazaoTotalElement.textContent = `Vazão Total: ${vazTot.toFixed(2)} L/min`;
     resultadoVazaoBicoElement.textContent = `Vazão por Bico: ${vazPorBic.toFixed(2)} L/min`;
-    resultadoVazãoElement.textContent = `Vazão do fabricante: ${vazFab.toFixed(2)} L/min`;
+    resultadoVazãoElement.textContent = `Vazão para bico 015 dada a pressão: ${vazFab.toFixed(2)} L/min`;
 }
 
 //espera a tela carregar para começar
 
 window.onload = iniciarApp;
+
