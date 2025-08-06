@@ -13,41 +13,40 @@ function fazerCalculo() {
     const valor2Element = getElement('valor2');
     const valor3Element = getElement('valor3');
     const valor4Element = getElement('valor4');
-    const valor5Element = getElement('valor5');
+    
 
     // obtenção dos elementos de resultado 
     const resultadoVazaoTotalElement    = getElement('resultadoVazaoTotal');
     const resultadoVazaoBicoElement     = getElement('resultadoVazaoBico');
-    const resultadoVazãoElement         = getElement('resultadoVazão');
+    const resultadoPressReqElement      = getElement('resultadoPressReq');
 
     // transformando em numeros flutuantes 
     const velTrat     = parseFloat(valor1Element.value);
     const dosDes      = parseFloat(valor2Element.value);
     const espEntLin   = parseFloat(valor3Element.value);
     const numBic      = parseFloat(valor4Element.value);
-    const pressao     = parseFloat(valor5Element.value);
+    //const pressao     = parseFloat(valor5Element.value);
 
     // validação de entrada pra se os numeros tiverem errados ou se a pessao digitar errado
-    if (isNaN(velTrat) || isNaN(dosDes) || isNaN(espEntLin) || isNaN(numBic) || isNaN(pressao) || numBic === 0 || pressao <= 0 || velTrat <= 0 || dosDes <= 0 || espEntLin <= 0) {
+    if (isNaN(velTrat) || isNaN(dosDes) || isNaN(espEntLin) || isNaN(numBic) || numBic === 0 || velTrat <= 0 || dosDes <= 0 || espEntLin <= 0) {
         resultadoVazaoTotalElement.textContent = 'Erro: Insira valores válidos ou preencha todos os campos!.';
         resultadoVazaoBicoElement.textContent = ''; // Limpa o segundo campo de resultado
-        resultadoVazãoElement.textContent = ''; // Limpa o terceiro campo de resultado
+        resultadoPressReqElement.textContent = ''; // Limpa o terceiro campo de resultado
         return;
     }
 
     // --- conta ---
-    const vazTot = (velTrat * dosDes * espEntLin) / 600; 
+    const vazTot    = (velTrat * dosDes * espEntLin) / 600; 
     const vazPorBic = vazTot / numBic;
-    const vazFab = 0.3456 * (pressao ** 0.5008); // Fórmula do fabricante
-
+    const presReq   = 2526.1*(vazPorBic**4) - 8959.7*(vazPorBic**3) + 11932*(vazPorBic**2) - 6860*(vazPorBic) + 1482.2// Fórmula do fabricante
+   
 
     // isso não é uma aspas, é uma crase!!
-    resultadoVazaoTotalElement.textContent = `Vazão Total: ${vazTot.toFixed(2)} L/min`;
-    resultadoVazaoBicoElement.textContent = `Vazão por Bico: ${vazPorBic.toFixed(2)} L/min`;
-    resultadoVazãoElement.textContent = `Vazão para bico 015 dada a pressão: ${vazFab.toFixed(2)} L/min`;
+    resultadoVazaoTotalElement.textContent   = `Vazão Total: ${vazTot.toFixed(2)} L/min`;
+    resultadoVazaoBicoElement.textContent    = `Vazão por Bico: ${vazPorBic.toFixed(2)} L/min`;
+    resultadoPressReqElement.textContent     = `Pressão requerida : ${presReq.toFixed(2)} PSI`;
 }
 
 //espera a tela carregar para começar
 
 window.onload = iniciarApp;
-
